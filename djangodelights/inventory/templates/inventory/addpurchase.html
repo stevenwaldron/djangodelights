@@ -1,0 +1,29 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container min-vh-100 d-flex justify-content-center allign-items-center">
+  <form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            <div class="form-control form-control-lg">
+                {{ field }}
+            </div>
+            {% if field.errors %}
+                <div class="invalid-feedback">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    {% if form.errors %}
+        <div class="text-danger">{{ form.errors.menu_items|striptags }}</div>
+    {% endif %}
+    <input type="submit" value="Cancel" name="cancel" class="btn btn-outline-secondary"/>
+    <input type="submit" value="Create Purchase" name="create" class="btn btn-outline-success"/>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+{% load filters %}
+
+{% block content %}
+<div class="container">
+  <div class="container d-flex justify-content-center allign-items-center vstack col-md-4 padding-0 mx-auto g-0 pb-5">
+    <h1 class="text-center py-5 fw-bold">Purchases</h1>
+    <button onclick="window.location.href='{% url '/addpurchase/' %}'" class="btn btn-outline-success">Add Purchase</a>
+ </div>
+  <table class="table table-hover table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Menu items</th>
+        <th>Time of purchase</th>
+        <th>total</th>
+    </tr>
+    {% for object in object_list %}
+    <tr>
+        <td>{{ object.id }}</td>
+        <td>{{ object.pk|list_items }}</td>
+        <td>{{object.time_of_purchase}}</td>
+        <td>{{object.total}}</td>
+        <td><button onclick="window.location.href='{% url '/deletepurchase/' object.pk %}'" class="btn btn-outline-danger">delete</a></td>
+        <td><button onclick="window.location.href='{% url '/deleteandrestorepurchase/' object.pk %}'" class="btn btn-outline-danger">delete & restore</a></td>
+
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

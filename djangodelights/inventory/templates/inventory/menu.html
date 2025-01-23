@@ -1,0 +1,29 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+{% load filters %}
+
+{% block content %}
+<div class="container">
+  <div class="container d-flex justify-content-center allign-items-center vstack col-md-4 padding-0 mx-auto g-0 pb-5">
+    <h1 class="text-center py-5 fw-bold">Menu</h1>
+    <button onclick="window.location.href='{% url '/addmenuitem/' %}'" class="btn btn-outline-success">Add Menu Item</a>
+ </div>
+  <table class="table table-hover table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Recipe Requirements</th>
+    </tr>
+    {% for object in object_list %}
+    <tr>
+        <td>{{object.name}}</td>
+        <td>{{object.price}}</td>
+        <td>{{object.recipeRequirements|list_recipe_requirements}}</td>
+        <td><button onclick="window.location.href='{% url '/updatemenuitem/' object.pk %}'" class="btn btn-outline-primary">update</a></td>
+        <td><button onclick="window.location.href='{% url '/deletemenuitem/' object.pk %}'" class="btn btn-outline-danger">delete</a></td>
+
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

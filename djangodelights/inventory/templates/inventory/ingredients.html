@@ -1,0 +1,33 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+ <div class="container d-flex justify-content-center allign-items-center vstack col-md-4 padding-0 mx-auto g-0 pb-5">
+  <div class="d-flex justify-content-center">
+    <h1 class="text-center py-5 fw-bold">Ingredients</h1>
+  </div>
+    <button onclick="window.location.href='{% url '/addingredient/' %}'" class="btn btn-outline-success">Add ingredient</a>
+ </div>
+  <table class="table table-hover table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Price per Unit</th>
+        <th>Available Quantity</th>
+        <th>Unit Of Measurement</th>
+    </tr>
+    {% for object in object_list %}
+    <tr>
+        <td>{{object.name}}</td>
+        <td>{{object.price_per_unit}}</td>
+        <td>{{object.available_quantity}}</td>
+        <td>{{object.unit_of_measurement}}</td>
+        <td><button onclick="window.location.href='{% url '/updateingredient/' object.pk %}'" class="btn btn-outline-primary">update</button></td>
+        <td><button onclick="window.location.href='{% url '/deleteingredient/' object.pk %}'" class="btn btn-outline-danger">delete</button></td>
+
+    </tr>
+    {% endfor %}
+  </table>
+ 
+</div>
+{% endblock %}

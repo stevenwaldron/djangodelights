@@ -1,0 +1,15 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container d-flex justify-content-center allign-items-center vstack col-md-4 padding-0 mx-auto g-0">
+ <h1 class="text-center py-5 fw-bold">Are you  sure you want to delete this ingredient?</h1>
+ <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Cancel" name="cancel" class="btn btn-outline-secondary ms-5"/>
+    <input type="submit" value="Delete Ingredient" name="delete" class="btn btn-outline-danger ms-5"/>
+
+ </form>
+</div>
+{% endblock %}
